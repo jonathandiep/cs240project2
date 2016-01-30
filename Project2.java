@@ -1,28 +1,37 @@
+import java.util.Scanner;
+
 class Project2 {
   public static void main(String[] args) {
+    System.out.println("Assign a value for Set A (submit empty value for empty set):");
+    Scanner sc = new Scanner(System.in);
+    Object i = sc.nextLine();
     Set setA = new Set();
-    System.out.println(setA.addElement(4));
-    System.out.println(setA.addElement(3));
-    System.out.println(setA.addElement(1));
-    System.out.println(setA.addElement(2));
+    setA.addElement(i);
+    while (!(i.equals(""))) {
+      System.out.println("Assign the next value for Set A (submit empty value when finished):");
+      i = sc.nextLine();
+      setA.addElement(i);
+    }
+    System.out.println("Set A: " + setA.toString());
+    System.out.println();
+
+    System.out.println("Assign a value for Set B:");
+    i = sc.nextLine();
     Set setB = new Set();
-    System.out.println(setB.addElement(2));
-    System.out.println(setB.addElement(1));
-    System.out.println(setB.addElement(3));
-    Set c = setA.complement(setB);
-    System.out.println("size: " + c.size());
-    Node afterHead = c.head.getNext();
-    Node afterHead2 = afterHead.getNext();
-    System.out.println(afterHead.getElement());
-    System.out.println(afterHead2.getElement());
-    /*
-    Node afterHead3 = afterHead2.getNext();
-    Node afterHead4 = afterHead3.getNext();
-    System.out.println(afterHead3.getElement());
-    System.out.println(afterHead4.getElement());
-    System.out.println("size: " + c.size());
-    */
-    // 1. ask user how many sets wanted
-    // 2. ask user what to enter for each set
+    setB.addElement(i);
+    while (!(i.equals(""))) {
+      System.out.println("Assign the next value for Set B:");
+      i = sc.nextLine();
+      setB.addElement(i);
+    }
+
+    System.out.println("Set A: " + setA.toString());
+    System.out.println("Set B: " + setB.toString());
+    System.out.println();
+    System.out.println("A subset B:     " + setA.subsetOf(setB));
+    System.out.println("A equal B:      " + setA.isEqual(setB));
+    System.out.println("A union B:      " + setA.union(setB));
+    System.out.println("A intersect B:  " + setA.intersection(setB));
+    System.out.println("A complement B: " + setA.complement(setB));
   }
 }

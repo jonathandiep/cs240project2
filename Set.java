@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Set {
+class Set {
   protected Node head;
   protected int size;
 
@@ -23,9 +23,9 @@ public class Set {
 
   public boolean remove(Object data) {
     if (contain(data)) {
-      Node curr = head;
-      Node prev = null;
-      while (curr.getNext() != null) {
+      Node curr = head.getNext();
+      Node prev = head;
+      while (curr.getElement() != null) {
         if (data.equals(curr.getElement())) {
           prev.setNext(curr.getNext());
           curr.setNext(null);
@@ -42,7 +42,7 @@ public class Set {
   }
 
   public boolean addElement(Object data) {
-    if (contain(data)) { return false; }
+    if (contain(data) || data.equals("")) { return false; }
 
     Node newNode = new Node(data, null);
 
@@ -85,7 +85,9 @@ public class Set {
     int checkSize = 0;
     for (int i = 0; i < arrayA.length; i++) {
       for (int j = 0; j < arrayB.length; j++) {
-        if (arrayA[i] == arrayB[j]) { checkSize++; }
+        if (arrayA[i].equals(arrayB[j])) {
+          checkSize++;
+        }
       }
     }
 
@@ -115,10 +117,20 @@ public class Set {
     Arrays.sort(arrayA);
     Arrays.sort(arrayB);
 
+    int checkSize = 0;
     for (int i = 0; i < arrayA.length; i++) {
-      if (arrayA[i] != arrayB[i]) { return false; }
+      for (int j = 0; j < arrayB.length; j++) {
+        if (arrayA[i].equals(arrayB[j])) {
+          checkSize++;
+        }
+      }
     }
-    return true;
+
+    if (checkSize == arrayA.length) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
@@ -151,162 +163,60 @@ public class Set {
   public Set intersection(Set b) {
     Set c = new Set();
     Node temp = this.head.getNext();
-    Node compare = b.head.getNext();
+    Node comp = b.head.getNext();
 
     while (temp != null) {
-      while (compare != null) {
-        if (temp.getElement() == compare.getElement()) {
-          c.addElement(compare.getElement());
+      while (comp != null) {
+        if (temp.getElement() == comp.getElement()) {
+          c.addElement(comp.getElement());
         }
-        compare = compare.getNext();
+        comp = comp.getNext();
       }
       temp = temp.getNext();
-      compare = b.head.getNext();
+      comp = b.head.getNext();
     }
 
     return c;
   }
-/*
 
   public Set complement(Set b) {
     Set c = this;
     Node temp = c.head.getNext();
-    Node compare = b.head.getNext();
-    while (temp.getNext() != null) {
-      System.out.println("outside loop");
-      while (compare != null) {
-        System.out.println("inside loop");
-        System.out.println("Temp: " + temp.getElement());
-        System.out.println("Comp: " + compare.getElement());
-        if (temp.getElement() == compare.getElement()) {
-          Node hold = temp;
-          temp = temp.getNext();
-          c.remove(hold.getElement());
-          compare = b.head.getNext();
-        } else {
-          compare = compare.getNext();
+    Node comp = b.head.getNext();
+
+    while (comp != null) {
+      while (temp != null) {
+        if (comp.getElement() == temp.getElement()) {
+          c.remove(comp.getElement());
         }
+        temp = temp.getNext();
       }
-      System.out.println("TempNext: " + temp.getNext().getElement());
-      temp = temp.getNext();
-      compare = b.head.getNext();
+      comp = comp.getNext();
+      temp = c.head.getNext();
     }
 
     return c;
   }
-*/
 
-
-  public Set complement(Set b) {
-    Set c = this;
-    Node temp = c.head.getNext();
-    Node compare = b.head.getNext();
-    do{
-      System.out.println("outside loop");
-      while (compare != null) {
-        System.out.println("inside loop");
-        System.out.println("Temp: " + temp.getElement());
-        System.out.println("Comp: " + compare.getElement());
-        if (temp.getElement() == compare.getElement()) {
-          Node hold = temp;
-          temp = temp.getNext();
-          c.remove(hold.getElement());
-          compare = b.head.getNext();
-        } else {
-          compare = compare.getNext();
-        }
-      }
-      System.out.println("TempNext: " + temp.getNext().getElement());
-      // perform temp checking here
-      temp = temp.getNext(); // temp possibly pointing to nothing (after removing)
-      compare = b.head.getNext();
-    } while(temp.getNext() != null);
-
-    return c;
-  }
-
-  /*
   public String toString() {
+    Set set = this;
+    Object[] setArr = new Object[set.size()];
+    Node temp = set.head.getNext();
+    String print = "{";
 
-  }
-  */
-}
-
-/*
-  // union
-
-  Object[] arrayA = new Object[this.size()];
-  Object[] arrayB = new Object[b.size()];
-  Object[] arrayC = new Object[this.size() + b.size()];
-  Set c = new Set();
-
-  Node tempA = this.head.getNext();
-  Node tempB = b.head.getNext();
-
-  for (int i = 0; i < arrayA.length; i++) {
-    arrayA[i] = tempA.getElement();
-    tempA = tempA.getNext();
-  }
-
-  for (int i = 0; i < arrayB.length; i++) {
-    arrayB[i] = tempB.getElement();
-    tempB = tempB.getNext();
-  }
-
-  System.arraycopy(arrayA, 0, arrayC, 0 , arrayA.length);
-  System.arraycopy(arrayB, 0, arrayC, arrayA.length, arrayB.length);
-
-  Arrays.sort(arrayC);
-
-  Node tempC = c.head;
-
-  for (int i = 0; i < arrayC.length; i++) {
-    if (tempC.getElement() != arrayC[i]) {
-      c.addElement(arrayC[i]);
-      tempC = tempC.getNext();
+    for (int i = 0; i < set.size(); i++) {
+      setArr[i] = temp.getElement();
+      temp = temp.getNext();
     }
-  }
-  return c;
 
-  // intersection
-
-  Object[] arrayA = new Object[this.size()];
-  Object[] arrayB = new Object[b.size()];
-  Object[] arrayC = new Object[this.size() + b.size()];
-  Set c = new Set();
-
-  Node tempA = this.head.getNext();
-  Node tempB = b.head.getNext();
-
-  for (int i = 0; i < arrayA.length; i++) {
-    arrayA[i] = tempA.getElement();
-    tempA = tempA.getNext();
-  }
-
-  for (int i = 0; i < arrayB.length; i++) {
-    arrayB[i] = tempB.getElement();
-    tempB = tempB.getNext();
-  }
-
-  System.arraycopy(arrayA, 0, arrayC, 0 , arrayA.length);
-  System.arraycopy(arrayB, 0, arrayC, arrayA.length, arrayB.length);
-
-  Arrays.sort(arrayC);
-
-  Node tempC = c.head;
-
-  for (int i = 0; i < arrayC.length; i++) {
-    for (int j = i + 1; j < arrayC.length; j++) {
-      if (arrayC[i] == arrayC[j]) {
-        arrayC[i] = null;
-        arrayC[j] = null;
+    for (int i = 0; i < set.size(); i++) {
+      if (i + 1 == set.size()) {
+        print += setArr[i].toString();
+      } else {
+        print += setArr[i].toString() + ",";
       }
     }
-  }
 
-  for (int i = 0; i < arrayC.length; i++) {
-    if (arrayC[i] != null) { c.addElement(arrayC[i]); }
+    return print + "}";
   }
-  return c;
-
-*/
+}
