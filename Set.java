@@ -133,7 +133,6 @@ class Set {
     }
   }
 
-
   public Set union(Set b) {
     Node aNode = this.head.getNext();
     Set c = new Set();
@@ -159,19 +158,10 @@ class Set {
     Set setB = b;
     Node comp = setB.head.getNext();
 
-    //System.out.println("sizes: " + setA.size() + " : " + setB.size());
-
     while (temp != null) {
       while (comp != null) {
-        /*
-        System.out.println();
-        System.out.println("temp: " + temp.getElement());
-        System.out.println("comp: " + comp.getElement());
-        */
         if (temp.getElement().equals(comp.getElement())) {
-          //System.out.println("adding element: " + comp.getElement());
           c.addElement(comp.getElement());
-          break;
         }
         comp = comp.getNext();
       }
@@ -189,7 +179,7 @@ class Set {
 
     while (comp != null) {
       while (temp != null) {
-        if (comp.getElement() == temp.getElement()) {
+        if (comp.getElement().equals(temp.getElement())) {
           c.remove(comp.getElement());
         }
         temp = temp.getNext();
@@ -224,38 +214,3 @@ class Set {
   }
 
 }
-
-
-/*
-
-public Set intersection(Set b) {
-  Set c = new Set();
-  Set setA = this;
-  Node temp = setA.head.getNext();
-  Set setB = b;
-  Node comp = setB.head.getNext();
-  int counter = 0;
-
-  System.out.println("sizes: " + setA.size() + " : " + setB.size());
-
-  while (temp != null && counter < (setA.size() * setB.size())) {
-    while (comp != null && counter < (setA.size() * setB.size())) {
-      System.out.println();
-      System.out.println(counter);
-      System.out.println("temp: " + temp.getElement());
-      System.out.println("comp: " + comp.getElement());
-      if (temp.getElement().equals(comp.getElement()) && counter < (setA.size() * setB.size())) {
-        System.out.println("adding element: " + comp.getElement());
-        c.addElement(comp.getElement());
-      }
-      counter++;
-      comp = comp.getNext();
-    }
-    temp = temp.getNext();
-    comp = b.head.getNext();
-  }
-
-  return c;
-}
-
-*/

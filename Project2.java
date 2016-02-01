@@ -28,7 +28,6 @@ class Project2 {
 
     System.out.println("Set A: " + setA.toString());
     System.out.println("Set B: " + setB.toString());
-    System.out.println("sizes: " + setA.size() + " | " + setB.size());
     System.out.println();
     System.out.println("A subset B:     " + setA.subsetOf(setB));
     System.out.println("A equal B:      " + setA.isEqual(setB));

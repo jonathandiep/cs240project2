@@ -1,0 +1,121 @@
+~/Desktop/java > javac *.java
+ ~/Desktop/java > java Project2
+Assign a value for Set A (submit empty value for empty set):
+1
+Assign the next value for Set A (submit empty value when finished):
+2
+Assign the next value for Set A (submit empty value when finished):
+3
+Assign the next value for Set A (submit empty value when finished):
+
+Set A: {1,2,3}
+
+Assign a value for Set B:
+2
+Assign the next value for Set B:
+1
+Assign the next value for Set B:
+3
+Assign the next value for Set B:
+
+Set A: {1,2,3}
+Set B: {2,1,3}
+
+A subset B:     true
+A equal B:      true
+A union B:      {1,2,3}
+A intersect B:  {1,2,3}
+A complement B: {}
+ ~/Desktop/java > java Project2
+Assign a value for Set A (submit empty value for empty set):
+1
+Assign the next value for Set A (submit empty value when finished):
+
+Set A: {1}
+
+Assign a value for Set B:
+1
+Assign the next value for Set B:
+2
+Assign the next value for Set B:
+
+Set A: {1}
+Set B: {1,2}
+
+A subset B:     true
+A equal B:      false
+A union B:      {1,2}
+A intersect B:  {1}
+A complement B: {}
+ ~/Desktop/java > java Project2
+Assign a value for Set A (submit empty value for empty set):
+1
+Assign the next value for Set A (submit empty value when finished):
+2
+Assign the next value for Set A (submit empty value when finished):
+3
+Assign the next value for Set A (submit empty value when finished):
+
+Set A: {1,2,3}
+
+Assign a value for Set B:
+2
+Assign the next value for Set B:
+3
+Assign the next value for Set B:
+4
+Assign the next value for Set B:
+5
+Assign the next value for Set B:
+
+Set A: {1,2,3}
+Set B: {2,3,4,5}
+
+A subset B:     false
+A equal B:      false
+A union B:      {1,2,3,4,5}
+A intersect B:  {2,3}
+A complement B: {1}
+ ~/Desktop/java > java Project2
+Assign a value for Set A (submit empty value for empty set):
+1
+Assign the next value for Set A (submit empty value when finished):
+
+Set A: {1}
+
+Assign a value for Set B:
+2
+Assign the next value for Set B:
+3
+Assign the next value for Set B:
+
+Set A: {1}
+Set B: {2,3}
+
+A subset B:     false
+A equal B:      false
+A union B:      {1,2,3}
+A intersect B:  {}
+A complement B: {1}
+ ~/Desktop/java > java Project2
+Assign a value for Set A (submit empty value for empty set):
+
+Set A: {}
+
+Assign a value for Set B:
+1
+Assign the next value for Set B:
+2
+Assign the next value for Set B:
+3
+Assign the next value for Set B:
+
+Set A: {}
+Set B: {1,2,3}
+
+A subset B:     true
+A equal B:      false
+A union B:      {1,2,3}
+A intersect B:  {}
+A complement B: {}
+ ~/Desktop/java >
