@@ -16,22 +16,25 @@ class Project2 {
     System.out.println();
 
     System.out.println("Assign a value for Set B:");
-    i = sc.nextLine();
+    Object j = sc.nextLine();
     Set setB = new Set();
-    setB.addElement(i);
-    while (!(i.equals(""))) {
+    setB.addElement(j);
+    while (!(j.equals(""))) {
       System.out.println("Assign the next value for Set B:");
-      i = sc.nextLine();
-      setB.addElement(i);
+      j = sc.nextLine();
+      setB.addElement(j);
     }
+
 
     System.out.println("Set A: " + setA.toString());
     System.out.println("Set B: " + setB.toString());
+    System.out.println("sizes: " + setA.size() + " | " + setB.size());
     System.out.println();
     System.out.println("A subset B:     " + setA.subsetOf(setB));
     System.out.println("A equal B:      " + setA.isEqual(setB));
     System.out.println("A union B:      " + setA.union(setB));
     System.out.println("A intersect B:  " + setA.intersection(setB));
     System.out.println("A complement B: " + setA.complement(setB));
+
   }
 }

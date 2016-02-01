@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 class Set {
-  protected Node head;
-  protected int size;
+  private Node head;
+  private int size;
 
   public Set() {
     head = new Node(null, null);
@@ -135,7 +135,13 @@ class Set {
 
 
   public Set union(Set b) {
-    Set c = this;
+    Node aNode = this.head.getNext();
+    Set c = new Set();
+    while (aNode != null) {
+      c.addElement(aNode.getElement());
+      aNode = aNode.getNext();
+    }
+
     Node bNode = b.head.getNext();
 
     while (bNode != null) {
@@ -143,32 +149,29 @@ class Set {
       bNode = bNode.getNext();
     }
 
-    Node temp = c.head.getNext();
-    Node compare = temp.getNext();
-
-    while (temp.getNext() != null) {
-      while (compare.getNext() != null) {
-        if (temp.getElement() == compare.getElement()) {
-          c.remove(compare.getElement());
-        }
-        compare = compare.getNext();
-      }
-      temp = temp.getNext();
-      compare = temp.getNext();
-    }
-
     return c;
   }
 
   public Set intersection(Set b) {
     Set c = new Set();
-    Node temp = this.head.getNext();
-    Node comp = b.head.getNext();
+    Set setA = this;
+    Node temp = setA.head.getNext();
+    Set setB = b;
+    Node comp = setB.head.getNext();
+
+    //System.out.println("sizes: " + setA.size() + " : " + setB.size());
 
     while (temp != null) {
       while (comp != null) {
-        if (temp.getElement() == comp.getElement()) {
+        /*
+        System.out.println();
+        System.out.println("temp: " + temp.getElement());
+        System.out.println("comp: " + comp.getElement());
+        */
+        if (temp.getElement().equals(comp.getElement())) {
+          //System.out.println("adding element: " + comp.getElement());
           c.addElement(comp.getElement());
+          break;
         }
         comp = comp.getNext();
       }
@@ -219,4 +222,40 @@ class Set {
 
     return print + "}";
   }
+
 }
+
+
+/*
+
+public Set intersection(Set b) {
+  Set c = new Set();
+  Set setA = this;
+  Node temp = setA.head.getNext();
+  Set setB = b;
+  Node comp = setB.head.getNext();
+  int counter = 0;
+
+  System.out.println("sizes: " + setA.size() + " : " + setB.size());
+
+  while (temp != null && counter < (setA.size() * setB.size())) {
+    while (comp != null && counter < (setA.size() * setB.size())) {
+      System.out.println();
+      System.out.println(counter);
+      System.out.println("temp: " + temp.getElement());
+      System.out.println("comp: " + comp.getElement());
+      if (temp.getElement().equals(comp.getElement()) && counter < (setA.size() * setB.size())) {
+        System.out.println("adding element: " + comp.getElement());
+        c.addElement(comp.getElement());
+      }
+      counter++;
+      comp = comp.getNext();
+    }
+    temp = temp.getNext();
+    comp = b.head.getNext();
+  }
+
+  return c;
+}
+
+*/
